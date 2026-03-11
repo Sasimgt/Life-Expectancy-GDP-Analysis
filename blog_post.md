@@ -1,0 +1,365 @@
+# Investigating the Relationship Between GDP and Life Expectancy
+
+## Introduction
+
+Economic prosperity and public health are often closely connected. Countries with stronger economies generally have better healthcare systems, improved infrastructure, and greater access to essential services. But how strong is the relationship between a country's economic output and the lifespan of its population?
+
+In this project, I analyzed data from the World Health Organization (WHO) and the World Bank to explore whether there is a measurable relationship between GDP (Gross Domestic Product) and life expectancy.
+
+This investigation was inspired by the International Headquarters of Empathy and Logic (IHEAL), which believes there may be an important connection between the wealth of a nation and the longevity of its people.
+
+As the Vice President of Intuition and Systems at IHEAL explains:
+
+> "We know in our hearts and minds that there is an unjust connection between the wealth of a nation and the life of its people, but we can't get buy in from the people in power without the data to support this."
+
+The central research question guiding this project is:
+
+**Is there a correlation between GDP and life expectancy of a country?**
+
+To answer this question, I used Python, Pandas, Matplotlib, Seaborn, and NumPy to explore economic and health data from six countries.
+
+## Tools Used
+
+The analysis was conducted using the following Python libraries:
+
+- **Pandas** for data manipulation
+- **NumPy** for numerical transformations
+- **Matplotlib** for visualization
+- **Seaborn** for statistical plotting
+
+These tools enabled efficient data loading, exploration, visualization, and statistical analysis.
+
+## Loading and Exploring the Dataset
+
+The first step was to load the dataset and inspect its structure.
+
+````python
+import os
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+import numpy as np
+from matplotlib.ticker import FuncFormatter
+
+# Create folder for graphs
+os.makedirs("images", exist_ok=True)
+
+# Load dataset
+df = pd.read_csv("all_data.csv")
+
+print(df.head())
+print(df.info())
+print(df.describe())
+
+print(df.Country.unique())
+print(df.Year.unique())
+print(df.columns)
+
+print(df.groupby('Country')[['GDP', 'Life Expectancy']]
+      .mean()
+      .sort_values(by='GDP', ascending=False))
+
+print(df[df['Country'] == 'China'])
+
+This initial exploration confirmed:
+- Six countries are present in the dataset
+- Data spans multiple years
+- Key variables include GDP and Life Expectancy
+
+## Life Expectancy Over Time
+
+To understand how life expectancy changed over time, I created a line plot using Seaborn.
+
+```python
+plt.figure(figsize=(10,6))
+
+sns.lineplot(
+    data=df,
+    x='Year',
+    y='Life Expectancy',
+    hue='Country',
+    marker='o'
+)
+
+plt.title("Life Expectancy Over Time")
+plt.ylabel("Life Expectancy (years)")
+plt.xlabel("Year")
+plt.legend(title="Country")
+
+plt.tight_layout()
+plt.savefig("images/life_expectancy_over_time.png", dpi=300)
+plt.show()
+plt.clf()
+
+### Figure 1 — Life Expectancy Over Time
+![Life Expectancy Over Time](images/life_expectancy_over_time.png)
+
+### Observations
+- Germany, Chile, and the United States maintain high life expectancy.
+- Zimbabwe begins with significantly lower life expectancy.
+- Zimbabwe also shows noticeable improvement over time.
+
+### Interpretation
+Life expectancy tends to improve slowly as healthcare systems evolve, living conditions improve, and public health initiatives become more effective.
+
+Zimbabwe’s pattern is particularly notable because it shows recovery from a low starting point, suggesting significant health improvements during the observed period.
+
+---
+
+## GDP Growth Over Time
+Next, I analyzed GDP trends for each country.
+
+Because GDP values are extremely large, the y-axis was formatted in trillions of dollars.
+
+```python
+def trillions(x, pos):
+    return '$%1.1fT' % (x * 1e-12)
+
+formatter = FuncFormatter(trillions)
+
+f, ax = plt.subplots(figsize=(10,6))
+
+sns.lineplot(
+    data=df,
+    x='Year',
+    y='GDP',
+    hue='Country',
+    marker='o',
+    ax=ax
+)
+
+plt.xticks(rotation=70)
+ax.yaxis.set_major_formatter(formatter)
+
+plt.title("GDP Over Time")
+plt.ylabel("GDP in Trillions of U.S. Dollars")
+plt.xlabel("Year")
+plt.legend(title="Country")
+
+plt.tight_layout()
+plt.savefig("images/gdp_over_time.png", dpi=300)
+
+plt.show()
+plt.clf()
+### Figure 2 — GDP Over Time
+![GDP Over Time](images/gdp_over_time.png)
+
+### Observations
+- The United States maintains the highest GDP.
+- China shows the most dramatic GDP growth.
+- Chile and Mexico show steady growth.
+- Zimbabwe remains the lowest.
+
+### Interpretation
+China's economic transformation during the early 2000s is clearly visible in the dataset.
+
+---
+
+## Researching Data Context
+
+### What happened in China that increased GDP so drastically?
+
+One of the strongest patterns in the dataset is China’s rapid GDP growth during the 2000 to 2015 period shown in the visualization. A major reason is China’s long phase of market-oriented reform and export-led industrial expansion, which accelerated its integration into the global economy.
+
+Another important milestone was China’s entry into the World Trade Organization in 2001. WTO membership expanded China’s access to global markets and was followed by policy and regulatory changes that made it easier for trade, manufacturing, and foreign investment to scale.
+
+So, when the visualization shows China’s GDP rising much faster than the other countries, that pattern reflects a real-world combination of economic reforms, export growth, industrialization, urbanization, and global trade expansion.
+
+---
+
+## Relationship Between GDP and Life Expectancy
+
+To explore the relationship between economic output and health outcomes, I created a scatter plot comparing GDP and life expectancy.
+
+Because GDP values vary widely, I applied a logarithmic transformation.
+
+```python
+df['log_GDP'] = np.log10(df['GDP'])
+
+plt.figure(figsize=(10,6))
+
+sns.scatterplot(
+    data=df,
+    x='log_GDP',
+    y='Life Expectancy',
+    hue='Country',
+    marker='o',
+    alpha=0.7,
+    s=60
+)
+
+plt.title("Life Expectancy vs Log10(GDP)")
+plt.xlabel("Log10(GDP)")
+plt.ylabel("Life Expectancy (years)")
+plt.legend(title="Country")
+
+plt.tight_layout()
+plt.savefig("images/life_expectancy_vs_log_gdp.png", dpi=300)
+
+plt.show()
+plt.clf()
+### Figure 3 — Life Expectancy vs Log10(GDP)
+![Life Expectancy vs Log10(GDP)](images/life_expectancy_vs_log_gdp.png)
+
+### Observations
+- Higher GDP countries tend to have higher life expectancy.
+- Zimbabwe appears in the lower GDP and lower life expectancy region.
+- Developed economies cluster in the higher life expectancy range.
+
+### Interpretation
+The scatter plot suggests a positive relationship between GDP and life expectancy.
+
+Using a logarithmic transformation helps reveal the underlying pattern that might otherwise be hidden due to the large differences in GDP values across countries.
+---
+
+## Regression Analysis
+
+To further examine the relationship between GDP and life expectancy, I added a regression line.
+
+```python
+plt.figure(figsize=(10,6))
+
+sns.regplot(
+    data=df,
+    x='log_GDP',
+    y='Life Expectancy',
+    scatter_kws={'alpha':0.6, 's':60},
+    line_kws={'linewidth':2}
+)
+
+plt.title("Regression: Life Expectancy vs Log10(GDP)")
+plt.xlabel("Log10(GDP)")
+plt.ylabel("Life Expectancy (years)")
+
+plt.tight_layout()
+plt.savefig("images/regression_life_expectancy_vs_log_gdp.png", dpi=300)
+
+plt.show()
+plt.clf()
+### Figure 4 — Regression: Life Expectancy vs Log10(GDP)
+![Regression: Life Expectancy vs Log10(GDP)](images/regression_life_expectancy_vs_log_gdp.png)
+
+### Interpretation
+The upward slope of the regression line indicates a positive relationship between GDP and life expectancy.
+
+While GDP does not directly determine life expectancy, the trend suggests that countries with stronger economies often have conditions that support longer lifespans.
+---
+
+## Correlation Analysis
+
+To quantify the relationship, I computed the correlation matrix.
+
+```python
+correlation = df[['GDP', 'Life Expectancy']].corr()
+print("Correlation Matrix:")
+print(correlation)
+
+log_correlation = df[['log_GDP', 'Life Expectancy']].corr()
+print("Correlation Matrix with log_GDP:")
+print(log_correlation)
+
+###Average Life Expectancy by Country
+To compare countries more directly, I calculated the average life expectancy for each country across the dataset.
+
+Next, I calculated the average life expectancy for each country.
+
+```python
+avg_life = df.groupby('Country')['Life Expectancy'].mean().sort_values()
+
+plt.figure(figsize=(10,6))
+
+sns.barplot(
+    x=avg_life.index,
+    y=avg_life.values,
+    hue=avg_life.index,
+    palette='coolwarm',
+    legend=False
+)
+
+plt.title("Average Life Expectancy by Country")
+plt.xlabel("Country")
+plt.ylabel("Average Life Expectancy (years)")
+
+plt.xticks(rotation=45)
+
+plt.tight_layout()
+plt.savefig("images/average_life_expectancy_by_country.png", dpi=300)
+
+plt.show()
+plt.clf()
+
+### Figure 5 — Average Life Expectancy by Country
+![Average Life Expectancy by Country](images/average_life_expectancy_by_country.png)
+
+Germany and Chile show the highest averages, while Zimbabwe remains the lowest.
+
+---
+
+## Distribution of Life Expectancy
+
+Finally, I examined how life expectancy values are distributed.
+
+```python
+plt.figure(figsize=(8,6))
+
+sns.histplot(
+    df['Life Expectancy'],
+    bins=15,
+    kde=True
+)
+
+plt.title("Distribution of Life Expectancy")
+plt.xlabel("Life Expectancy (years)")
+plt.ylabel("Count")
+
+plt.tight_layout()
+plt.savefig("images/life_expectancy_distribution.png", dpi=300)
+
+plt.show()
+plt.clf()
+### Figure 6 — Distribution of Life Expectancy
+![Distribution of Life Expectancy](images/life_expectancy_distribution.png)
+
+###Observations
+Most life expectancy values cluster around the higher range.
+A lower tail appears due to countries with lower life expectancy values, especially Zimbabwe.
+
+###Interpretation
+The distribution highlights differences in global health outcomes across countries with varying economic development levels.
+
+
+---
+
+## Key Insights
+From this analysis, several important insights emerge:
+
+- GDP and life expectancy show a positive relationship.
+- Countries with stronger economies tend to have higher life expectancy.
+- China demonstrates the most dramatic GDP growth.
+- Zimbabwe consistently shows the lowest GDP and life expectancy.
+- Log-transforming GDP improves visualization of the relationship.
+
+---
+
+## Limitations
+Although the analysis shows a correlation, several limitations exist:
+- Only six countries are included.
+- Many other factors influence life expectancy.
+- Correlation does not imply causation.
+
+Important additional factors include:
+- healthcare access
+- education
+- sanitation
+- public health policy
+- social stability
+
+---
+
+## Conclusion
+This project explored whether economic development correlates with population longevity.
+
+Both the visualizations and statistical analysis suggest that countries with higher GDP tend to have higher life expectancy. However, the relationship is complex and influenced by multiple social and policy factors beyond economic output.
+
+Through data visualization and exploratory analysis, this project demonstrates how data science can reveal meaningful patterns in global health and economic data.
+````
