@@ -14,6 +14,26 @@ The main research question guiding this analysis is:
 
 By analyzing trends across multiple countries and years, this project aims to provide a clearer picture of how economic development may relate to global health outcomes.
 
+## Why These Visualizations Matter
+
+The goal of this project is to understand whether there is a meaningful relationship between GDP and life expectancy. Since no single chart can answer that completely, I used multiple visualizations to look at the question from different angles.
+
+The first step was exploring the dataset itself. This helped confirm which countries and years were included, what the key columns were, and whether the data looked clean enough to analyze.
+
+The line plots for life expectancy and GDP show how both variables change over time. Together, they provide the foundation for the project: one captures health outcomes, and the other captures economic growth. These trends make it easier to compare how countries develop across the same period.
+
+The scatter plot is one of the most important visuals because it directly compares GDP and life expectancy. I used a log transformation for GDP to make the chart easier to read, since raw GDP values differ so much across countries. This helps reveal the overall relationship more clearly.
+
+The regression plot and correlation analysis add statistical support to the visual findings. The regression line highlights the general upward trend, while the correlation gives a numerical summary of how strongly GDP and life expectancy move together.
+
+The bar chart of average life expectancy makes country-level comparison simple and direct. Instead of looking year by year, it shows which countries maintain higher or lower life expectancy overall.
+
+The histogram and violin plot focus on distribution. The histogram shows how life expectancy values are spread across the full dataset, while the violin plot breaks that distribution down by country. This makes it easier to see variation, concentration, and consistency in health outcomes.
+
+Finally, the facet plots provide a more detailed country-by-country view. By separating the charts into individual panels, they make it easier to study each country’s GDP trend and the relationship between GDP and life expectancy without the visual clutter of combining everything in one chart.
+
+Taken together, these visualizations make the analysis more complete. They do not all show the same thing. Instead, each one adds a different piece of evidence, helping build a clearer and more convincing answer to the project’s main question.
+
 ## Tools Used
 
 The analysis was conducted using the following Python libraries:
