@@ -430,8 +430,6 @@ To examine economic growth trends more closely, I created a facet grid of line c
 Facet grids allow us to break a dataset into smaller subplots, making it easier to observe patterns within each country without overlapping lines.
 
 ```python
-from matplotlib.ticker import FuncFormatter
-
 def trillions(x, pos):
     return '$%1.1fT' % (x * 1e-12)
 
