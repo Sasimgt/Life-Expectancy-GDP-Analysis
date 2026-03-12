@@ -22,15 +22,16 @@ By analyzing trends across multiple countries and years, this project aims to pr
 This project performs exploratory data analysis and visualization to investigate the relationship between economic development and population longevity.
 
 The analysis includes:
+
 - Exploring the dataset
 - Visualizing life expectancy trends
 - Analyzing GDP growth
 - Examining correlations between GDP and life expectancy
 - Performing regression analysis
 - Visualizing the distribution of life expectancy values
-- Comparing life expectancy distributions by country 
+- Comparing life expectancy distributions by country
 - Analyzing GDP as a function of life expectancy by country with log-transformed GDP
-- Visualizing GDP growth over time by country 
+- Visualizing GDP growth over time by country
 
 The goal is to understand whether economic strength tends to coincide with improvements in population health outcomes.
 
@@ -42,18 +43,18 @@ The dataset contains information on **GDP and life expectancy across multiple ye
 
 Data Sources:
 World Bank  
-World Health Organization  
+World Health Organization
 
 Dataset used in this project:
 all_data.csv
 
 Columns included in the dataset:
 
-| Column | Description |
-|------|-------------|
-| Country | Country name |
-| Year | Year of observation |
-| GDP | Gross Domestic Product in USD |
+| Column          | Description                      |
+| --------------- | -------------------------------- |
+| Country         | Country name                     |
+| Year            | Year of observation              |
+| GDP             | Gross Domestic Product in USD    |
 | Life Expectancy | Average life expectancy at birth |
 
 Countries analyzed:
@@ -84,20 +85,20 @@ Life-Expectancy-GDP-Analysis
 │
 ├── all_data.csv
 ├── life_expectancy_gdp.ipynb
-├── README.md 
-├── blog_post.md 
+├── README.md
+├── blog_post.md
 │
 └── images
-    ├── life_expectancy_over_time.png
-    ├── gdp_over_time.png
-    ├── life_expectancy_vs_log_gdp.png
-    ├── regression_life_expectancy_vs_log_gdp.png
-    ├── average_life_expectancy_by_country.png
-    ├── life_expectancy_distribution.png
-    ├── violin_life_expectancy_by_country.png
-    ├── facet_scatter_log_gdp_vs_life_expectancy_by_country.png
-    └── facet_gdp_by_country.png
-    
+├── life_expectancy_over_time.png
+├── gdp_over_time.png
+├── life_expectancy_vs_log_gdp.png
+├── regression_life_expectancy_vs_log_gdp.png
+├── average_life_expectancy_by_country.png
+├── life_expectancy_distribution.png
+├── violin_life_expectancy_by_country.png
+├── facet_scatter_log_gdp_vs_life_expectancy_by_country.png
+└── facet_gdp_by_country.png
+
 ---
 
 # Key Visualizations
@@ -176,7 +177,6 @@ Shows GDP trends over time for each country in separate facet plots.
 
 ![GDP Growth Over Time by Country](images/facet_gdp_by_country.png)
 
-
 ---
 
 # Key Insights
@@ -224,7 +224,9 @@ Important additional factors include:
 - social stability
 
 ---
+
 # Blog Post
+
 A detailed explanation of the full analysis is available in:
 
 blog_post.md
@@ -235,20 +237,22 @@ This file contains the complete walkthrough of the data exploration and visualiz
 # How to Run the Project
 
 1. Clone the repository
-git clone https://github.com/sasimgt/Life-Expectancy-GDP-Analysis.git
+   git clone https://github.com/sasimgt/Life-Expectancy-GDP-Analysis.git
 
 2. Navigate to the project directory
-cd Life-Expectancy-GDP-Analysis
+   cd Life-Expectancy-GDP-Analysis
 
 3. Install required libraries
-pip install pandas numpy matplotlib seaborn
+   pip install pandas numpy matplotlib seaborn
 
 4. Run the analysis script
-jupyter life_expectancy_gdp.ipynb 
-All plots will be generated and saved inside the **images/** folder.
+   jupyter life_expectancy_gdp.ipynb
+   All plots will be generated and saved inside the **images/** folder.
 
 ---
+
 # Conclusion
+
 This project demonstrates how **data visualization and exploratory analysis** can reveal meaningful patterns between economic development and public health.
 While GDP alone does not determine life expectancy, the results suggest that stronger economies often create conditions that support longer lifespans.
 
