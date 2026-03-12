@@ -80,7 +80,7 @@ These tools enabled efficient data loading, exploration, visualization, and stat
 
 # Project Structure
 
-life-expectancy-gdp-analysis
+life-Expectancy-and-GDP-Analysis
 │
 ├── all_data.csv
 ├── blog_post.md
@@ -215,7 +215,7 @@ cd life-expectancy-gdp
 pip install pandas numpy matplotlib seaborn
 
 4. Run the analysis script
-python analysis.py
+jupyter life_expectancy_gdp.ipynb 
 All plots will be generated and saved inside the **images/** folder.
 
 ---
