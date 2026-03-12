@@ -151,6 +151,31 @@ Shows how life expectancy values are distributed across the dataset.
 
 ---
 
+## Life Expectancy Distribution by Country
+
+Shows how life expectancy values are distributed for each country.
+
+![Life Expectancy Distribution by Country](images/violin_life_expectancy_by_country.png)
+
+---
+
+## GDP as a Function of Life Expectancy by Country (Log Scale)
+
+Shows the relationship between life expectancy and log-transformed GDP for each country in separate facet plots.
+
+![GDP as a Function of Life Expectancy by Country (Log Scale)](images/facet_scatter_log_gdp_vs_life_expectancy_by_country.png)
+
+---
+
+## GDP Growth Over Time by Country
+
+Shows GDP trends over time for each country in separate facet plots.
+
+![GDP Growth Over Time by Country](images/facet_gdp_by_country.png)
+
+
+---
+
 # Key Insights
 
 Several insights emerge from the analysis:
