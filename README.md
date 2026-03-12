@@ -9,6 +9,7 @@ In this project, I analyzed data from the World Health Organization (WHO) and th
 Using Python and common data science libraries including Pandas, NumPy, Matplotlib, and Seaborn, I explored the dataset through data cleaning, exploratory analysis, and multiple visualizations. These visualizations help highlight patterns between economic growth and population health over time.
 
 The main research question guiding this analysis is:
+
 **Is there a correlation between a country's GDP and the life expectancy of its population??**
 
 By analyzing trends across multiple countries and years, this project aims to provide a clearer picture of how economic development may relate to global health outcomes.
