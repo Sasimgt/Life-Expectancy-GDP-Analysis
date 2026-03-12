@@ -2,23 +2,20 @@
 
 ## Introduction
 
-Economic prosperity and public health are often closely connected. Countries with stronger economies generally have better healthcare systems, improved infrastructure, and greater access to essential services. But how strong is the relationship between a country's economic output and the lifespan of its population?
+Economic development and public health are often closely related. Countries with stronger economies tend to have better healthcare systems, improved infrastructure, and broader access to essential services. Because of this connection, it is reasonable to ask whether economic growth is associated with longer life expectancy.
 
-In this project, I analyzed data from the World Health Organization (WHO) and the World Bank to explore whether there is a measurable relationship between GDP (Gross Domestic Product) and life expectancy.
+In this project, I analyzed data from the World Health Organization (WHO) and the World Bank to explore the relationship between Gross Domestic Product (GDP) and life expectancy across six countries. The goal was to understand whether countries with higher economic output also tend to have populations that live longer.
 
-This investigation was inspired by the International Headquarters of Empathy and Logic (IHEAL), which believes there may be an important connection between the wealth of a nation and the longevity of its people.
+Using Python and common data science libraries including Pandas, NumPy, Matplotlib, and Seaborn, I explored the dataset through data cleaning, exploratory analysis, and multiple visualizations. These visualizations help highlight patterns between economic growth and population health over time.
 
-As the Vice President of Intuition and Systems at IHEAL explains:
+The main research question guiding this analysis is:
+**Is there a correlation between a country's GDP and the life expectancy of its population??**
 
-> "We know in our hearts and minds that there is an unjust connection between the wealth of a nation and the life of its people, but we can't get buy in from the people in power without the data to support this."
-
-The central research question guiding this project is:
-
-**Is there a correlation between GDP and life expectancy of a country?**
-
-To answer this question, I used Python, Pandas, Matplotlib, Seaborn, and NumPy to explore economic and health data from six countries.
+By analyzing trends across multiple countries and years, this project aims to provide a clearer picture of how economic development may relate to global health outcomes.
 
 ---
+
+# Project Overview
 
 # Project Overview
 
@@ -31,6 +28,9 @@ The analysis includes:
 - Examining correlations between GDP and life expectancy
 - Performing regression analysis
 - Visualizing the distribution of life expectancy values
+- Comparing life expectancy distributions by country 
+- Analyzing GDP as a function of life expectancy by country with log-transformed GDP
+- Visualizing GDP growth over time by country 
 
 The goal is to understand whether economic strength tends to coincide with improvements in population health outcomes.
 
@@ -83,18 +83,21 @@ These tools enabled efficient data loading, exploration, visualization, and stat
 Life-Expectancy-GDP-Analysis
 │
 ├── all_data.csv
-├── blog_post.md
-├── life_expectancy_gdp.ipynb 
-├── README.md
+├── life_expectancy_gdp.ipynb
+├── README.md 
+├── blog_post.md 
 │
 └── images
-├── life_expectancy_over_time.png
-├── gdp_over_time.png
-├── life_expectancy_vs_log_gdp.png
-├── regression_life_expectancy_vs_log_gdp.png
-├── average_life_expectancy_by_country.png
-└── life_expectancy_distribution.png
-
+    ├── life_expectancy_over_time.png
+    ├── gdp_over_time.png
+    ├── life_expectancy_vs_log_gdp.png
+    ├── regression_life_expectancy_vs_log_gdp.png
+    ├── average_life_expectancy_by_country.png
+    ├── life_expectancy_distribution.png
+    ├── violin_life_expectancy_by_country.png
+    ├── facet_scatter_log_gdp_vs_life_expectancy_by_country.png
+    └── facet_gdp_by_country.png
+    
 ---
 
 # Key Visualizations
@@ -185,6 +188,7 @@ Several insights emerge from the analysis:
 - China demonstrates the most dramatic GDP growth during the observed period.
 - Zimbabwe consistently shows the lowest GDP and life expectancy values.
 - Log-transforming GDP improves visualization of the relationship.
+- Distribution and facet-grid visualizations reveal clearer country-level patterns in economic growth and life expectancy.
 
 ---
 
