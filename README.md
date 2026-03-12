@@ -83,18 +83,21 @@ These tools enabled efficient data loading, exploration, visualization, and stat
 Life-Expectancy-GDP-Analysis
 │
 ├── all_data.csv
-├── blog_post.md
-├── life_expectancy_gdp.ipynb 
-├── README.md
+├── life_expectancy_gdp.ipynb
+├── README.md 
+├── blog_post.md 
 │
 └── images
-├── life_expectancy_over_time.png
-├── gdp_over_time.png
-├── life_expectancy_vs_log_gdp.png
-├── regression_life_expectancy_vs_log_gdp.png
-├── average_life_expectancy_by_country.png
-└── life_expectancy_distribution.png
-
+    ├── life_expectancy_over_time.png
+    ├── gdp_over_time.png
+    ├── life_expectancy_vs_log_gdp.png
+    ├── regression_life_expectancy_vs_log_gdp.png
+    ├── average_life_expectancy_by_country.png
+    ├── life_expectancy_distribution.png
+    ├── violin_life_expectancy_by_country.png
+    ├── facet_scatter_log_gdp_vs_life_expectancy_by_country.png
+    └── facet_gdp_by_country.png
+    
 ---
 
 # Key Visualizations
