@@ -18,8 +18,6 @@ By analyzing trends across multiple countries and years, this project aims to pr
 
 # Project Overview
 
-# Project Overview
-
 This project performs exploratory data analysis and visualization to investigate the relationship between economic development and population longevity.
 
 The analysis includes:
