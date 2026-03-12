@@ -328,6 +328,159 @@ A lower tail appears due to countries with lower life expectancy values, especia
 The distribution highlights differences in global health outcomes across countries with varying economic development levels.
 
 
+## Life Expectancy Distribution by Country
+
+To better understand how life expectancy varies across countries, I created a violin plot to visualize the distribution of life expectancy values for each country.
+
+Unlike simple summary charts, violin plots display the full distribution of the data, showing where values are concentrated and how widely they vary.
+
+```python
+plt.figure(figsize=(12,6))
+
+sns.violinplot(
+    data=df,
+    x='Country',
+    y='Life Expectancy',
+    palette='Set2',
+    inner='quartile'
+)
+
+plt.title("Life Expectancy Distribution by Country")
+plt.xlabel("Country")
+plt.ylabel("Life Expectancy (years)")
+plt.xticks(rotation=45)
+
+plt.tight_layout()
+plt.savefig("images/violin_life_expectancy_by_country.png", dpi=300)
+
+plt.show()
+plt.clf()
+###Figure 7 — Life Expectancy Distribution by Country
+![Life Expectancy Distribution by Country](images/violin_life_expectancy_by_country.png)
+
+###Observations
+Germany, Chile, and the United States show higher life expectancy distributions.
+Zimbabwe appears noticeably lower and more spread out.
+
+Some countries show tighter distributions, indicating more consistent life expectancy values over time.
+
+###Interpretation
+The violin plot shows the distribution and density of life expectancy values for each country. Wider sections indicate where more observations are concentrated, while narrower areas represent fewer observations.
+
+Countries with stronger healthcare systems and higher economic development tend to cluster around higher life expectancy ranges, while countries facing economic or public health challenges display lower and more variable distributions.
+
+
+## GDP as a Function of Life Expectancy by Country
+
+To examine the relationship between GDP and life expectancy more clearly for each country, I created a facet grid of scatter plots using a log-transformed GDP scale.
+
+Because GDP values vary dramatically across countries, plotting raw GDP makes smaller economies harder to compare. Using `Log10(GDP)` improves readability and makes country-level patterns easier to interpret.
+
+```python
+# Create log-transformed GDP column
+df['log_GDP'] = np.log10(df['GDP'])
+
+g = sns.FacetGrid(
+    df,
+    col="Country",
+    col_wrap=3,
+    height=4,
+    sharex=False,
+    sharey=True
+)
+
+g.map_dataframe(
+    sns.scatterplot,
+    x="Life Expectancy",
+    y="log_GDP",
+    s=60,
+    alpha=0.7
+)
+
+g.set_axis_labels("Life Expectancy (years)", "Log10(GDP)")
+g.set_titles("{col_name}")
+
+for ax in g.axes.flat:
+    ax.tick_params(axis='x', rotation=45)
+
+g.fig.subplots_adjust(top=0.88)
+g.fig.suptitle("GDP as a Function of Life Expectancy by Country (Log Scale)")
+
+g.savefig("images/facet_scatter_log_gdp_vs_life_expectancy_by_country.png", dpi=300)
+plt.show()
+plt.clf()
+###Figure 8— GDP as a Function of Life Expectancy by Country (Log Scale)
+![GDP as a Function of Life Expectancy by Country (Log Scale)](images/facet_scatter_log_gdp_vs_life_expectancy_by_country.png)
+
+
+###Observations
+Separating the countries into facets makes country-level trends easier to compare.
+Countries with higher life expectancy generally also show higher log-transformed GDP values.
+Zimbabwe remains in the lower range for both life expectancy and GDP.
+China and the United States still stand out economically, but the log scale makes the differences easier to interpret.
+
+###Interpretation
+Using Log10(GDP) reduces the visual dominance of very large economies and makes the relative relationship between GDP and life expectancy clearer across all countries. This helps reveal country-specific patterns that may be harder to observe in a single combined scatter plot.
+
+
+
+##Facet Grid of Line Graphs Mapping GDP by Country
+This visualization shows **each country separately**, which is exactly what Codecademy suggested.
+
+## GDP Growth by Country
+
+To examine economic growth trends more closely, I created a facet grid of line charts showing GDP over time for each country individually.
+
+Facet grids allow us to break a dataset into smaller subplots, making it easier to observe patterns within each country without overlapping lines.
+
+```python
+from matplotlib.ticker import FuncFormatter
+
+def trillions(x, pos):
+    return '$%1.1fT' % (x * 1e-12)
+
+g = sns.FacetGrid(
+    df,
+    col="Country",
+    col_wrap=3,
+    height=4,
+    sharey=False
+)
+
+g.map_dataframe(
+    sns.lineplot,
+    x="Year",
+    y="GDP",
+    marker="o"
+)
+
+g.set_axis_labels("Year", "GDP in Trillions of U.S. Dollars")
+g.set_titles("{col_name}")
+
+for ax in g.axes.flat:
+    ax.tick_params(axis='x', rotation=45)
+    ax.yaxis.set_major_formatter(FuncFormatter(trillions))
+
+g.fig.subplots_adjust(top=0.88)
+g.fig.suptitle("GDP Growth Over Time by Country")
+
+g.savefig("images/facet_gdp_by_country.png", dpi=300)
+
+plt.show()
+plt.clf()
+###Figure 9— GDP Growth Over Time by Country
+![GDP Growth Over Time by Country](images/facet_gdp_by_country.png)
+
+###Observations
+China shows the most dramatic GDP growth over the time period.
+The United States maintains consistently high GDP values.
+Chile and Mexico demonstrate steady economic growth.
+Zimbabwe remains significantly lower compared to the other countries.
+
+###Interpretation
+By separating each country into its own subplot, the facet grid makes it easier to observe economic growth patterns individually. China’s rapid economic expansion becomes especially clear in this visualization, reflecting its industrialization and global trade integration during the early 2000s.
+
+
 ---
 
 ## Key Insights
