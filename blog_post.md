@@ -399,8 +399,8 @@ g.set_titles("{col_name}")
 for ax in g.axes.flat:
     ax.tick_params(axis='x', rotation=45)
 
-g.fig.subplots_adjust(top=0.88)
-g.fig.suptitle("GDP as a Function of Life Expectancy by Country (Log Scale)")
+g.figure.subplots_adjust(top=0.88)
+g.figure.suptitle("GDP as a Function of Life Expectancy by Country (Log Scale)")
 
 g.savefig("images/facet_scatter_log_gdp_vs_life_expectancy_by_country.png", dpi=300)
 plt.show()
@@ -451,12 +451,15 @@ g.map_dataframe(
 g.set_axis_labels("Year", "GDP in Trillions of U.S. Dollars")
 g.set_titles("{col_name}")
 
+years = sorted(df["Year"].unique())[::2]
+
 for ax in g.axes.flat:
+    ax.set_xticks(years)
     ax.tick_params(axis='x', rotation=45)
     ax.yaxis.set_major_formatter(FuncFormatter(trillions))
 
-g.fig.subplots_adjust(top=0.88)
-g.fig.suptitle("GDP Growth Over Time by Country")
+g.figure.subplots_adjust(top=0.88)
+g.figure.suptitle("GDP Growth Over Time by Country")
 
 g.savefig("images/facet_gdp_by_country.png", dpi=300)
 
