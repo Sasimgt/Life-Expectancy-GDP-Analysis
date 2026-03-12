@@ -80,7 +80,7 @@ These tools enabled efficient data loading, exploration, visualization, and stat
 
 # Project Structure
 
-life-Expectancy-and-GDP-Analysis
+Life-Expectancy-GDP-Analysis
 │
 ├── all_data.csv
 ├── blog_post.md
@@ -206,10 +206,10 @@ This file contains the complete walkthrough of the data exploration and visualiz
 # How to Run the Project
 
 1. Clone the repository
-git clone https://github.com/sasimgt/life-expectancy-gdp.git
+git clone https://github.com/sasimgt/Life-Expectancy-GDP-Analysis.git
 
 2. Navigate to the project directory
-cd life-expectancy-gdp
+cd Life-Expectancy-GDP-Analysis
 
 3. Install required libraries
 pip install pandas numpy matplotlib seaborn
